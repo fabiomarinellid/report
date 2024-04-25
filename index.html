@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <style type="text/css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Fundo branco */
+            color: #333;
+        }
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #000000; /* Fundo preto */
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centraliza o conteúdo */
+            align-items: center;
+        }
+        .logo {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .company-info {
+            text-align: center;
+            margin: 10px;
+        }
+        .client-info {
+            margin-bottom: 20px;
+			text-align: center;
+        }
+        .service-info {
+            margin-bottom: 20px;
+			text-align: center;
+        }
+		.items-info{
+			text-align: center;
+		}
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .items-table th, .items-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #000000; /* Fundo preto */
+            color: white;
+            width: 100%;
+        }
+		table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tfoot {
+            font-weight: bold;
+        }
+		a {
+			color: inherit;
+			text-decoration: none; /* Remover sublinhado */
+		}
+        /* Estilos responsivos */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+                text-align: center; /* Centraliza todo o conteúdo */
+            }
+            .header {
+                padding: 10px;
+            }
+        }
+		@media print {
+            /* Esconda o botão de impressão na impressão */
+            button#print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main id="conteudo">
+        <!-- O conteúdo da página será inserido aqui dinamicamente -->
+    </main>
+
+    <script>
+        // Função para imprimir a página
+        function imprimirPagina() {
+            window.print();
+        }
+    </script>
+    <script>
+        // Função para obter os parâmetros da URL
+        function obterParametrosDaURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pedidos = urlParams.get("pedido");
+            const descs = urlParams.get("desc");
+			const tabelas = urlParams.get("tabela");
+			const logos = urlParams.get("logo");
+			const empresas = urlParams.get("empresa");
+			const clientes = urlParams.get("cliente");
+			const servicos = urlParams.get("servico");
+			const tokens = urlParams.get("token");
+			const nomes = urlParams.get("nome");
+
+            return { pedidos, descs, tabelas, logos, empresas, clientes, servicos, tokens, nomes };
+        }
+
+        // Função para carregar e exibir o conteúdo com base nos parâmetros da URL
+        function carregarPaginaComParametros() {
+            const parametros = obterParametrosDaURL();
+			document.title = parametros.nomes + ' - ' + parametros.pedidos;
+
+            // Verifique se os parâmetros necessários estão presentes
+            if (!parametros.pedidos || !parametros.descs) {
+                document.getElementById("conteudo").innerHTML = "<p>Parâmetros ausentes. Certifique-se de passar os parametros na URL.</p>";
+                return;
+            }
+
+            // Construa o conteúdo com base nos parâmetros
+            const conteudo = `
+                
+				<div class="container">
+						<div class="header">
+							<div>
+								<img src="${parametros.logos}" alt="${parametros.nomes}" class="logo">
+							</div>
+							<div class="company-info">
+								<h1>${parametros.nomes}</h1>
+								${parametros.empresas}
+								${parametros.descs}
+							</div>
+						</div>
+
+						<div class="content">
+							<div class="client-info">
+								<h2>Informações do Cliente</h2>
+								${parametros.clientes}
+							</div>
+							
+							<div class="service-info">
+								<h2>Detalhes do Serviço</h2>
+								${parametros.servicos}
+							</div>
+							
+							<div class="items-info">
+								<h2>Itens do Serviço</h2>
+								${parametros.tabelas}
+							</div>
+						</div>
+				</div>
+				<div class="footer">
+					<button id="print-button" onclick="window.print()">Imprimir</button>
+					<!-- Botão para encurtar e compartilhar URL -->
+					<button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
+					<p>&copy; 2024 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a> - (14) 99805-0249.</p>
+				</div>
+				
+            `;
+
+            // Insira o conteúdo gerado na página
+            document.getElementById("conteudo").innerHTML = conteudo;
+        }
+
+        // Chame a função para carregar a página com base nos parâmetros da URL
+        carregarPaginaComParametros();
+    </script>
+	<script>
+	 function encurtarURL(longURL, accessToken) {
+            var endpoint = "https://api-ssl.bitly.com/v4/shorten";
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    long_url: longURL
+                })
+            };
+
+            return fetch(endpoint, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    return data.link;
+                })
+                .catch(error => {
+                    console.error('Erro ao encurtar a URL:', error);
+                });
+        }
+
+        function encurtarECompartilhar() {
+            var longURL = window.location.href; // Obtém a URL da página atual
+			var params = obterParametrosDaURL();
+			var accessToken = params.tokens;
+			var titulo = params.nomes + ' - ' + params.pedidos;
+
+            encurtarURL(longURL, accessToken)
+                .then(shortURL => {
+                    // Compartilhar a URL encurtada
+                    if (navigator.share) {
+                        navigator.share({
+                            title: titulo,
+                            text: 'Segue link do pedido: ',
+                            url: shortURL
+                        })
+                        .then(() => console.log('URL compartilhada com sucesso!'))
+                        .catch(error => console.error('Erro ao compartilhar:', error));
+                    } else {
+                        console.error('A API de compartilhamento não é suportada neste navegador.');
+                    }
+                });
+        }
+
+	</script>
+	<script>
+        // Criar um novo elemento link
+        var favicon = document.createElement('link');
+		
+		var parametrologo = obterParametrosDaURL();
+	    var favlogo = parametrologo.logos;
+        
+        // Definir os atributos do link
+        favicon.rel = 'icon';
+        favicon.href = favlogo;
+        favicon.type = 'image/x-icon';
+        
+        // Adicionar o novo favicon ao cabeçalho do documento
+        document.head.appendChild(favicon);
+    </script>
+</body>
+</html>
