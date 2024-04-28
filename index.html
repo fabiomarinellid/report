@@ -227,7 +227,7 @@
             return fetch(endpoint, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    return data.domain + data.alias;
+                    return data.alias;
                 })
                 .catch(error => {
                     console.error('Erro ao encurtar a URL:', error);
@@ -247,7 +247,7 @@
                         navigator.share({
                             title: titulo,
                             text: 'Segue link do pedido: ',
-                            url: shortURL
+                            url: 'https://tinyurl.com/' + shortURL
                         })
                         .then(() => console.log('URL compartilhada com sucesso!'))
                         .catch(error => console.error('Erro ao compartilhar:', error));
