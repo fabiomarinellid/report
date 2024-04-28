@@ -227,7 +227,7 @@
             return fetch(endpoint, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    return data.tiny_url;
+                    return data.domain + data.alias;
                 })
                 .catch(error => {
                     console.error('Erro ao encurtar a URL:', error);
