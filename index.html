@@ -119,7 +119,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const pedidos = urlParams.get("pedido");
             const descs = urlParams.get("desc");
-			const tabelas = urlParams.get("tabela");
+			const itens = urlParams.get("item");
+			const totais = urlParams.get("total");
 			const logos = urlParams.get("logo");
 			const empresas = urlParams.get("empresa");
 			const clientes = urlParams.get("cliente");
@@ -127,7 +128,7 @@
 			const tokens = urlParams.get("token");
 			const nomes = urlParams.get("nome");
 
-            return { pedidos, descs, tabelas, logos, empresas, clientes, servicos, tokens, nomes };
+            return { pedidos, descs, itens, totais, logos, empresas, clientes, servicos, tokens, nomes };
         }
 
         // Função para carregar e exibir o conteúdo com base nos parâmetros da URL
@@ -169,7 +170,25 @@
 							
 							<div class="items-info">
 								<h2>Itens do Serviço</h2>
-								${parametros.tabelas}
+								<table>
+									<thead>
+										<tr>
+										<th>Qtade</th>
+										<th>Descrição</th>
+										<th>Valor Unitário</th>
+										<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										${parametros.itens}
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="3">Total:</td>
+											<td>${parametros.totais}</td>
+										</tr>
+									</tfoot>
+								</table>
 							</div>
 						</div>
 				</div>
