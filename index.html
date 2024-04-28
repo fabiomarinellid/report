@@ -196,7 +196,7 @@
 				<div class="footer">
 					<button id="print-button" onclick="window.print()">Imprimir</button>
 					<!-- Botão para encurtar e compartilhar URL -->
-					<!-- <button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button> -->
+					 <button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
 					<button id="btnGerarPDF">Gerar PDF</button>
 					<p>&copy; 2024 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a> - (14) 99805-0249.</p>
 				</div>
@@ -212,7 +212,7 @@
     </script>
 	<script>
 	 function encurtarURL(longURL, accessToken) {
-            var endpoint = "https://api-ssl.bitly.com/v4/shorten";
+            var endpoint = "https://api.tinyurl.com/create";
             var requestOptions = {
                 method: 'POST',
                 headers: {
@@ -220,7 +220,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    long_url: longURL
+                    url: longURL
                 })
             };
 
