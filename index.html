@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style type="text/css">
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -195,7 +196,8 @@
 				<div class="footer">
 					<button id="print-button" onclick="window.print()">Imprimir</button>
 					<!-- Botão para encurtar e compartilhar URL -->
-					<button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
+					<!-- <button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button> -->
+					<button id="btnGerarPDF">Gerar PDF</button>
 					<p>&copy; 2024 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a> - (14) 99805-0249.</p>
 				</div>
 				
@@ -270,6 +272,16 @@
         
         // Adicionar o novo favicon ao cabeçalho do documento
         document.head.appendChild(favicon);
+    </script>
+    <script>
+        document.getElementById('btnGerarPDF').addEventListener('click', function() {
+			var parametro = obterParametrosDaURL();
+			var titulo = parametro.nomes + ' - ' + parametro.pedidos;
+            var element = document.getElementById('conteudo');
+            html2pdf()
+                .from(element)
+                .save(titulo + '.pdf');
+        });
     </script>
 </body>
 </html>
