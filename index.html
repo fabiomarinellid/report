@@ -227,7 +227,7 @@
             return fetch(endpoint, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    return data.alias;
+                    return Object.values(data)[0].alias;
                 })
                 .catch(error => {
                     console.error('Erro ao encurtar a URL:', error);
@@ -235,8 +235,7 @@
         }
 
         function encurtarECompartilhar() {
-	    var longURL = 'https://www.google.com.br/';	
-            //var longURL = window.location.href; // Obtém a URL da página atual
+            var longURL = window.location.href; // Obtém a URL da página atual
 	    var params = obterParametrosDaURL();
 	    var accessToken = params.tokens;
 	    var titulo = params.nomes + ' - ' + params.pedidos;
