@@ -227,7 +227,7 @@
             return fetch(endpoint, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    return data.alias.text();
+                    return data.alias;
                 })
                 .catch(error => {
                     console.error('Erro ao encurtar a URL:', error);
@@ -236,9 +236,10 @@
 
         function encurtarECompartilhar() {
             var longURL = window.location.href; // Obtém a URL da página atual
-			var params = obterParametrosDaURL();
-			var accessToken = params.tokens;
-			var titulo = params.nomes + ' - ' + params.pedidos;
+	    var params = obterParametrosDaURL();
+	    var accessToken = params.tokens;
+	    var titulo = params.nomes + ' - ' + params.pedidos;
+	    var shortURL = 'Erro ao encurtar url';
 
             encurtarURL(longURL, accessToken)
                 .then(shortURL => {
