@@ -235,12 +235,12 @@
         }
 
         function encurtarECompartilhar() {
-            var longURL = window.location.href; // Obtém a URL da página atual
+	    var longURL = 'https://www.google.com.br/';	
+            //var longURL = window.location.href; // Obtém a URL da página atual
 	    var params = obterParametrosDaURL();
 	    var accessToken = params.tokens;
 	    var titulo = params.nomes + ' - ' + params.pedidos;
-	    var shortURL = 'Erro ao encurtar url';
-
+		
             encurtarURL(longURL, accessToken)
                 .then(shortURL => {
                     // Compartilhar a URL encurtada
