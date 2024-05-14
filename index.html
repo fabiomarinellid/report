@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório</title>
+    <title>Documento de Pedido</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style type="text/css">
         body {
@@ -97,7 +97,7 @@
         }
 		@media print {
             /* Esconda o botão de impressão na impressão */
-            button#print-button {
+            button.print-button {
                 display: none;
             }
         }
@@ -194,10 +194,9 @@
 						</div>
 				</div>
 				<div class="footer">
-					<button id="print-button" onclick="window.print()">Imprimir</button>
-					<!-- Botão para encurtar e compartilhar URL -->
-					 <button id="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
-					<button id="btnGerarPDF">Gerar PDF</button>
+					<button class="print-button" onclick="window.print()">Imprimir</button>
+					<button class="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
+					<button class="print-button" id="btnGerarPDF">Gerar PDF</button>
 					<p>&copy; 2024 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a> - (14) 99805-0249.</p>
 				</div>
 				
