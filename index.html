@@ -238,6 +238,7 @@
 	    var params = obterParametrosDaURL();
 	    var accessToken = params.tokens;
 	    var titulo = params.nomes + ' - ' + params.pedidos;
+	    var pedido = params.pedidos;
 		
             encurtarURL(longURL, accessToken)
                 .then(shortURL => {
@@ -245,7 +246,7 @@
                     if (navigator.share) {
                         navigator.share({
                             title: titulo,
-                            text: 'Segue link do pedido: ',
+                            text: 'Segue link do ' + pedido,
                             url: 'https://tinyurl.com/' + shortURL
                         })
                         .then(() => console.log('URL compartilhada com sucesso!'))
