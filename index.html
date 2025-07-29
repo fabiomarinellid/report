@@ -8,11 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
     	function alternarFooter() {
-        	const footer = document.querySelector('.footer');
-        	if (footer) {
-            		footer.classList.toggle('escondido');
-        	}
-    	}
+        const footer = document.querySelector('.footer');
+        if (footer.style.display === "none" || footer.style.display === "") {
+            footer.style.display = "block";
+			window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+        } else {
+            footer.style.display = "none";
+        }
+    }
    </script>
    <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -124,10 +130,6 @@
         color: #4ad295;
         font-weight: 500;
     }
-
-    .escondido {
-	display: none !important;
-    }   
 
     button {
         background-color: #4ad295;
@@ -275,7 +277,7 @@
     				<button id="toggleFooterBtn" onclick="alternarFooter()" title="Mostrar/Ocultar Rodapé" style="width: 50px; height: 50px; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #4ad295; color: white; border: none; cursor: pointer;">
 					<i class="fas fa-print"></i>
 				</button>
-				<div class="footer">
+				<div class="footer" style="display: none;>
 					<button class="print-button" onclick="window.print()">Imprimir</button>
 					<button class="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
 					<button class="print-button" id="btnGerarPDF">Gerar PDF</button>
