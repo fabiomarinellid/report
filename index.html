@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FADoc - Aplicativo de Gerencimento de Pedidos e Orçamentos</title>
+    <title>FADoc - Aplicativo de Gerenciamento de Pedidos e Orçamentos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
     	function alternarFooter() {
-        const footer = document.querySelector('.footer');
-        if (footer.style.display === "none" || footer.style.display === "") {
-            footer.style.display = "block";
+		const footer = document.getElementById('footer');
+		const icon = document.getElementById('footerIcon');
+
+		if (footer.style.display === "none" || footer.style.display === "") {
+			footer.style.display = "block";
+			icon.classList.remove('fa-chevron-up');
+			icon.classList.add('fa-chevron-down');
 			window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-        } else {
-            footer.style.display = "none";
-        }
-    }
+				top: document.body.scrollHeight,
+				behavior: 'smooth'
+			});
+		} else {
+			footer.style.display = "none";
+			icon.classList.remove('fa-chevron-down');
+			icon.classList.add('fa-chevron-up');
+		}
+	}
    </script>
    <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -112,12 +118,19 @@
     }
 
     .footer {
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #111;
-        color: white;
-        text-align: center;
-        border-radius: 0 0 10px 10px;
+        margin-top: 20px;
+	padding: 20px;
+	background-color: #111;
+	color: white;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+	display: none;
+	transition: all 0.3s ease;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
     }
 
     .footer p {
@@ -129,6 +142,31 @@
     .footer a {
         color: #4ad295;
         font-weight: 500;
+    }
+
+    .toggle-footer-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 60px;
+	height: 60px;
+	font-size: 24px;
+	border-radius: 50%;
+	background-color: #4ad295;
+	color: white;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	z-index: 1100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.3s ease;
+	}
+
+    .toggle-footer-btn:hover {
+	background-color: #3bbf83;
+	transform: scale(1.05);
     }
 
     button {
@@ -274,14 +312,14 @@
 							</div>
 						</div>
 				</div>
-    				<button id="toggleFooterBtn" onclick="alternarFooter()" title="Mostrar/Ocultar Rodapé" style="width: 50px; height: 50px; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #4ad295; color: white; border: none; cursor: pointer;">
-					<i class="fas fa-print"></i>
+    				<button id="toggleFooterBtn" onclick="alternarFooter()" class="toggle-footer-btn" title="Mostrar/Ocultar Rodapé">
+					<i class="fas fa-chevron-up" id="footerIcon"></i>
 				</button>
-				<div class="footer" style="display: none;">
+				<div class="footer" id="footer">
 					<button class="print-button" onclick="window.print()">Imprimir</button>
 					<button class="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
 					<button class="print-button" id="btnGerarPDF">Gerar PDF</button>
-					<p>&copy; 2024 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a> - (14) 99805-0249.</p>
+					<p>&copy; 2025 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a><br>(14) 99805-0249.</p>
 				</div>
 				
             `;
