@@ -146,28 +146,28 @@
 
     .toggle-footer-btn {
 	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	width: 60px;
-	height: 60px;
-	font-size: 24px;
+	bottom: 16px;
+	right: 16px;
+	width: 42px;
+	height: 42px;
+	font-size: 18px;
 	border-radius: 50%;
 	background-color: #4ad295;
 	color: white;
 	border: none;
 	cursor: pointer;
-	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 	z-index: 1100;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: transform 0.3s ease;
-	}
+	transition: transform 0.2s ease;
+     }
 
-    .toggle-footer-btn:hover {
+     .toggle-footer-btn:hover {
 	background-color: #3bbf83;
 	transform: scale(1.05);
-    }
+     }
 
     button {
         background-color: #4ad295;
@@ -310,6 +310,9 @@
 									</tfoot>
 								</table>
 							</div>
+       							<p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+								&copy; 2025 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/" style="color: #4ad295; text-decoration: none;">FAD APP</a> - (14) 99805-0249.
+							</p>
 						</div>
 				</div>
     				<button id="toggleFooterBtn" onclick="alternarFooter()" class="toggle-footer-btn" title="Mostrar/Ocultar Rodapé">
@@ -319,7 +322,6 @@
 					<button class="print-button" onclick="window.print()">Imprimir</button>
 					<button class="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
 					<button class="print-button" id="btnGerarPDF">Gerar PDF</button>
-					<p>&copy; 2025 Gerado pelo aplicativo <a target="_blank" href="https://solucoes.fadapp.com.br/agenciadigital/">FAD APP</a><br>(14) 99805-0249.</p>
 				</div>
 				
             `;
