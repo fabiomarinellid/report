@@ -210,8 +210,7 @@
     }
 
     @media print {
-        button#print-button,
-        button#btnGerarPDF {
+        #print-button {
             display: none !important;
         }
 
@@ -265,7 +264,7 @@
             // Construa o conteúdo com base nos parâmetros
             const conteudo = `
                 
-				<div class="container">
+				<div class="container" id="container">
 						<div class="header">
 							<div>
 								<img src="${parametros.logos}" alt="${parametros.nomes}" class="logo">
@@ -316,13 +315,15 @@
 							</p>
 						</div>
 				</div>
-    				<button id="toggleFooterBtn" onclick="alternarFooter()" class="toggle-footer-btn" title="Mostrar/Ocultar Rodapé">
-					<i class="fas fa-chevron-up" id="footerIcon"></i>
-				</button>
-				<div class="footer" id="footer">
-					<button class="print-button" onclick="window.print()">Imprimir</button>
-					<button class="print-button" onclick="encurtarECompartilhar()">Compartilhar</button>
-					<button class="print-button" id="btnGerarPDF">Gerar PDF</button>
+    				<div id="print-button">
+					<button id="toggleFooterBtn" onclick="alternarFooter()" class="toggle-footer-btn" title="Mostrar/Ocultar Rodapé">
+						<i class="fas fa-chevron-up" id="footerIcon"></i>
+					</button>
+					<div class="footer" id="footer">
+						<button onclick="window.print()">Imprimir</button>
+						<button onclick="encurtarECompartilhar()">Compartilhar</button>
+						<button id="btnGerarPDF">Gerar PDF</button>
+					</div>
 				</div>
 				
             `;
@@ -402,7 +403,7 @@
         document.getElementById('btnGerarPDF').addEventListener('click', function() {
 			var parametro = obterParametrosDaURL();
 			var titulo = parametro.nomes + ' - ' + parametro.pedidos;
-            var element = document.getElementById('conteudo');
+            var element = document.getElementById('container');
             html2pdf()
                 .from(element)
                 .save(titulo + '.pdf');
